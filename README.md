@@ -1,6 +1,15 @@
 # MedGuys www.medguys.tech
 Apply machine learning on opensource health data to predict the mortality rate of a selected health disease
-
+<hr>
+App developed for HackUCI 2018.
+Team Members: 
+<ul>
+    <li>Aaron Hein Aung</li>
+    <li>Jigar Hira</li>
+    <li>Billy Simarmata</li>
+    <li>Apurva Kulkarni</li>
+</ul>
+<hr>
 <h4>Inspiration</h4>
 To spread awareness of the mortality rates regarding various diseases including cancer and strokes.
 
