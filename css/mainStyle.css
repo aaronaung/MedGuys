@@ -1,0 +1,204 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 3, 2018, 1:40:43 AM
+    Author     : billysimarmata
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900');
+
+*,
+*:after,
+*:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+	/* background: #f4f4f4 url(../images/grid_DominikKiss_SubtlePatterns.jpg); */
+                    background-color: #004DA4;	
+                    font-weight: 300;
+	font-size: 15px;
+    color: #333;
+    overflow-x: hidden;
+	/* //overflow: scroll;
+	//overflow-x: hidden; */
+}
+
+#selectContainer{
+    width: 70%;
+    margin-top: 100px;
+    margin-bottom: 10px;
+    padding: 0 !important;
+}
+
+#graphContainer{
+    width: 75%;
+    margin-top: 15px;
+    /* background-color: red;   */
+}
+
+.cd-dropdown{
+    width:100% !important;
+    z-index: 1;
+}
+.cd-dropdown ul li{
+    width: 100% !important;
+} 
+
+#searchBtn{
+    margin-top: 25px;
+    width: 100%;
+    z-index: -1;
+    background-color: #004DA4;
+}
+#graph{
+    /* background-color: red; */
+    width: 100%;
+    height: 500px;
+}
+
+#developers{
+    width: 50%;
+    margin-bottom: 50px;
+
+}
+#scrollTop{
+  	color: white;
+	font-size: 45px;
+  	position: fixed;
+  	left: 92%;
+  	top: 85%;
+ }
+#scrollTop:hover{
+	color: #a9a9a9;
+}
+.profile-pic{
+    border-radius: 50%;
+}
+
+#image1{
+    position: absolute;
+    top: 0;
+    margin: -1px -1px -1px -25vw;
+     width: 150vw;
+    height: 750px;
+    background-color: #F1F1F2;
+    background-size: cover;
+    background-position-y: 1%;
+    z-index: -1;
+    border-bottom-left-radius: 700px;
+    border-bottom-right-radius: 700px;
+}
+.text1{ 
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+}
+.text2{
+    color: white;
+    font-size: 24px;
+    font-weight: 100;
+    text-align: center;
+}
+.text3{
+    color: white;
+    font-size: 45px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 30px;
+}
+.text4{
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+}
+
+.ct-series-b .ct-line,
+.ct-series-b .ct-point {
+  stroke: black;
+  stroke-dasharray: 10px 20px;
+}
+
+.ct-axis-title{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    
+}
+
+@media screen and (max-width: 600px){
+    #graph{
+        width: 100%;
+        height: 60vw;
+    }
+
+    #developers{
+        width: 90%;
+    }
+
+    #missionStatement{
+        padding: 70px!important;
+        margin-bottom: 40px !important;
+    }
+}
+
+/* 
+#checkBoxes{
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+} 
+
+  .vis-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    
+}
+label {
+  font-weight: 300;
+  padding: 10px 30px 10px 30px;
+}
+
+input + label{
+    border: 1px solid gray;
+    margin-right: -2px;
+    -webkit-transition: background-color 0.5s;  For Safari 3.1 to 6.0 
+    transition: background-color 0.5s;
+}
+
+input:checked + label {
+  background-color: grey;
+}
+
+.chkGroup{
+    text-align: center;
+}
+.content{
+    text-align: center;
+    margin: 100px 0 0 0;
+}
+.dummyGraph{
+    background-color: #999;
+    height: 550px;
+    width: 70%;
+}
+.text1{
+    padding: 100px 15% 0 15%;
+    font-weight: 100;
+    font-size: 30px;
+}  */

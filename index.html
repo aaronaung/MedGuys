@@ -1,0 +1,232 @@
+<html>
+    <head>
+        <title>Med Guys</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Predict medical data">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="libs/chartist/dist/chartist.min.js"></script>
+        <script src="libs/chartist/dist/chartist-plugin-axistitle.min.js"></script>
+        <script src="libs/chartist/dist/chartist-plugin-legend.js"></script>
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="libs/chartist/dist/chartist.css">
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="css/style4.css" />
+        <link rel="stylesheet" type="text/css" href="css/mainStyle.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        <script src="js/modernizr.custom.63321.js"></script>
+        <script type="text/javascript" src="js/jquery.dropdown.js"></script>    
+        <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>    
+    </head>
+    
+    <body>
+        <div id="scrollTop">
+            <i id="scrollTop" class = "fas fa-arrow-alt-circle-up" aria-hidden="true"></i>
+        </div>
+        <div id="infoModal" class="modal fade">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                         <div class="row">
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="card card-body bg-light">
+                                    <img src="pictures/iconR.png" style="margin:auto; width:50px" alt="">
+                                    <p class="text-center"> Indicates the fitness of our prediction model</p>
+                                    <hr>
+                                    <h2 class="rValue text-center"></h2>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-lg-6">
+                                <div class="card card-body bg-light">
+                                    <img src="pictures/icon2black.png" style="margin:auto; width:150px" alt="">
+                                    <p class="text-center"> Predicted change in mortality rate by 2020</p>
+                                    <hr>
+                                    <h2 class="prediction text-center"></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class ="container" id="selectContainer" style="margin-top: 0;" >
+            <center><img src="pictures/G-logo.png" style="width: 100px; height: 100px;"></center>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <select id="cd-dropdown" class="cd-select mg-select">
+                        <option value="-1" selected>Select Disease</option>
+                        <option value="1" class="icon-camera">Cancer</option>
+                        <option value="2" class="icon-diamond">Heart Disease</option>
+                        <option value="3" class="icon-rocket">Influenza and Pneumonia</option>
+                        <option value="4" class="icon-star">Stroke</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm 12" hidden>
+                <button id="searchBtn" class="btn btn-lg btn-success mg-search">Search</button>
+            </div>
+            
+        </div>
+        <div class="container" id="graphContainer">
+            <div class="row ml-5 mr-3">
+                <div class="col-lg-8 p-0 mt-3">
+                    <span class="mr-4"><i class="fas fa-circle mr-1" style="color:red"></i> Actual data</span>
+                    <span class="mr-4"><i class="fas fa-circle mr-1" style="color:black"></i> Prediction Line</span>
+                    <span class="mr-4"><i class="fas fa-circle mr-1" style="color:yellow"></i> Next five-year prediction</span>
+                </div>
+                <div class="col-lg-4 p-0">
+                    <button id="moreinfo" style="width: 100%;transform: translateY(12%)" class="btn btn-sm btn-info mt-2">More information about the graph</a>
+                </div>
+            </div>
+            <div id="graph" ></div>
+        </div>
+        
+        
+        <div class="container" id="missionStatement" style="margin-top: 120px; margin-bottom: 120px;">
+            <h2 class="text-center mt-0 mb-2" style="color:white" >Our mission statement</h3>
+            <p class="text2">To spread awareness of the mortality rates regarding various diseases including cancer and strokes. With the help of machine learning algorithms, we have predicted future mortality rates based upon regression models. We strive to ensure that our data is ensured to be accurate and optimized to produce the best results.  
+            </p>
+        </div>
+
+        <div id = "image1"></div>
+            
+        <div class="container text-center" id="developers">
+            <div class="card card-body" style="background-color:#2a324f; border-radius: 25px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+                <div style="width: 40px; height: 40px;position:relative; left:50%; transform: translateX(-50%); background-color: #004DA4;box-shadow:inset 0px 0px 12px #000; border-radius:50%"></div>
+                <h1 class="text-center text3">Get to know us</h1>
+                <div class="row" style="margin-top: 40px;">
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                        <img class="profile-pic" style="width: 150px" src="pictures/aaron.png" alt="">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                        <img class="profile-pic" style="width: 150px" src="pictures/billy.png" alt="">
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 20px">
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                        <p class="text4 mb-2">Aaron Aung</p>
+                        <hr style="border-color:white; width: 75%; margin:auto">
+                        <p class="mt-2" style="color:white">4th Year | Computer Science</p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                        <p class="text4 mb-2">Billy Simarmata</p>
+                        <hr style="border-color:white; width: 75%; margin:auto">
+                        <p class="mt-2" style="color:white">3rd Year | Computer Science</p>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 40px;">
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                        <img class="profile-pic" style="width: 150px" src="pictures/apurva.png" alt="">
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                        <img class="profile-pic" style="width: 150px" src="pictures/jigar.png" alt="">
+                    </div>
+                </div>
+                <div class="row mb-4" style="margin-top: 20px">
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                        <p class="text4 mb-2">Apurva Kulkarni</p>
+                        <hr style="border-color:white; width: 75%; margin:auto">
+                        <p class="mt-2" style="color:white">1st year | Computer Science</p>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 text-center">
+                        <p class="text4 mb-2">Jigar Hira</p>
+                        <hr style="border-color:white; width: 75%; margin:auto">
+                        <p class="mt-2" style="color:white">1st year | Electrical Enginnering</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center" style="width:100%; height: 60px; background-color:#1d1d1d">
+            <p class="text-center" style="color:#d7d7d7; font-weight:300; font-size:17px; position: relative; top: 50%; transform: translateY(-50%)">Disease data courtesy of the National Center for Health Statistics</p>
+        </div>
+    </body>
+</html>
+
+<script src = "js/mg_custom_chart.js"></script>
+
+<script>
+    $("#moreinfo").off('click').on('click', function(){
+        $("#infoModal").modal();
+    })
+</script>
+
+<script>
+    toastr.info("Please select a disease from the drop-down list");
+    toastr.success("Currently displaying the 'default' graph");
+
+    $(document).ready(function(){
+        $("#scrollTop").on("click", function(){
+            $('html, body').animate({
+                scrollTop: $("#selectContainer").offset().top - 400
+            }, 1000);
+            return false;
+        })
+    })
+    
+    var lineData = {
+        labels: ["1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004"],
+        series: [
+            [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            [5, 6, 7, 8, 9, 10, 11, 12, 13, 14],
+            [10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+        ]
+    };
+    var lineOptions = {
+        axisX:{
+            offset: 100,
+            labelOffset: {
+                x: 0,
+                y: 0
+            }
+        },
+        showArea: true,
+        showGrid: true,
+        plugins: [
+            Chartist.plugins.ctAxisTitle({
+                axisX: {
+                    axisTitle: 'Year',
+                    axisClass: 'ct-axis-title',
+                    offset: {
+                        x: 0,
+                        y: 40
+                    },
+                    textAnchor: 'middle'
+                },
+                axisY: {
+                    axisTitle: 'Mortality',
+                    axisClass: 'ct-axis-title',
+                    offset: {
+                        x: 0,
+                        y: 0
+                    },
+                    flipTitle: false
+                }
+            }),
+        ]
+    }
+    var MGgraph = new MedGuyChart('#graph', lineData, lineOptions);
+    MGgraph.drawGraph();
+
+    $("#cd-dropdown").dropdown({
+        onOptionSelect: function(){
+            $("#searchBtn").trigger("click");
+        }
+    });
+</script>
