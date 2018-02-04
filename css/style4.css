@@ -1,3 +1,5 @@
+@import url('common.css');
+
 .cd-dropdown {
 	-webkit-perspective: 800px;
 	-moz-perspective: 800px;
